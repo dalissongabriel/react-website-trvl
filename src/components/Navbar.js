@@ -1,11 +1,27 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
+import { Button } from './Button'
 
 function Navbar() {
   const [click, setClick] = useState(false)
+  const [button, setButton] = useState(true)
 
   const handleClick = () => setClick(!click)
   const closeMobileMenu = () => setClick(false)
+
+  useEffect(() => {
+    function handleResize() {
+      if(window.innerWidth <= 960) {
+        setButton(true)
+      } else {
+        setButton(false)
+      }
+    }
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  },[])
+
   return (
     <>
       <nav className="navbar">
@@ -39,6 +55,7 @@ function Navbar() {
             </Link>
           </li>
         </ul>
+        {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
       </nav>
     </>
   )
