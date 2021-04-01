@@ -1,5 +1,10 @@
-import Navbar from './components/Navbar'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+
+// Components
+import Navbar from './components/Navbar'
+// Styles
+import './App.css'
+
 const App = () => {
   return (
     <>
